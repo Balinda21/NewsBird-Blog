@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "../component/Card";
+import { LuLoader } from "react-icons/lu";
 import Welcome from "./welcome";
 
 export const Home = () => {
@@ -34,7 +35,9 @@ export const Home = () => {
             />
           ))
         ) : (
-          <p>hhh</p>
+          <p>
+            <LuLoader />
+          </p>
         )}
       </div>
     </div>

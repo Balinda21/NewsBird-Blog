@@ -30,15 +30,11 @@ export default function Register() {
       .catch((error) => {
         alert("failed to create account");
         if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
           console.log("Server responded with data:", error.response.data);
           console.log("Status code:", error.response.status);
         } else if (error.request) {
-          // The request was made but no response was received
           console.log("No response received:", error.request);
         } else {
-          // Something happened in setting up the request that triggered an error
           console.log("Error message:", error.message);
         }
       });
@@ -70,11 +66,11 @@ export default function Register() {
             <input type="password" name="password" onChange={handleInput} />
             <label>Password</label>
           </div>
-          <div class="file-input">
+          <div className="file-input">
             <input
               type="file"
               id="profile"
-              name="picture"
+              name="profile"
               accept="image/*"
               onChange={handleInput}
             ></input>

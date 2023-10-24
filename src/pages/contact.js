@@ -1,16 +1,10 @@
 import React from "react";
 
-// import Navbar from '../component/navbar'
-// import footer from '../component/footer'
-// import Footer from '../component/footer'
-
 const Contact = () => {
   return (
     <div>
-      {/* <Navbar/> */}
-      {/* <Footer/> */}
       <div class="container">
-        <form action="https://formspree.io/f/mvojdqad" method="POST">
+        <form action="" method="POST">
           <div class="form-row">
             <div class="input-data">
               <input type="text" required></input>

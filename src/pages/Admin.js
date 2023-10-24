@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { LuLoader } from "react-icons/lu";
 import { Link, useNavigate } from "react-router-dom";
+import { LuLoader } from "react-icons/lu";
+import { FiUsers } from "react-icons/fi";
+import { PiUsersThreeFill } from "react-icons/pi";
 import Dashboardcard from "./Dashboardcard";
 import { AiOutlinePlus } from "react-icons/ai";
 
@@ -42,6 +44,13 @@ function Adminx() {
           </Link>
         </button>
       </div>
+      {/* <section className="statistics">
+        <div className="icons">
+          <p>
+            <FiUsers />
+          </p>
+        </div>
+      </section> */}
       <section className="grid_container">
         {posts.length > 0 ? (
           posts.map((post, index) => (

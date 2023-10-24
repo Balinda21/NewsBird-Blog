@@ -26,6 +26,7 @@ const Navbar = () => {
         <Link to="/about">About</Link>
         <Link to="/contact">Contact</Link>
         <Link to="/login">Login</Link>
+
         <div
           onClick={() => {
             localStorage.removeItem("token");

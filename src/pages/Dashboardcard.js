@@ -1,19 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 const Dashboardcard = ({ id, postImage, title, content, subheader }) => {
-  function deleteRecord(e) {
-    e.preventDefault();
+  const [isEditing, setEditing] = useState(false);
+  const [editedImage, setEditedImage] = useState(postImage);
+  const [editedTitle, setEditedTitle] = useState(title);
+  const [editedContent, setEditedContent] = useState(content);
+  const [imageFile, setImageFile] = useState(null);
+
+  function handleImageChange(e) {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setEditedImage(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+      setImageFile(file);
+    }
+  }
+
+  function handleEditClick() {
+    setEditing(true);
+  }
+
+  function handleSaveClick() {
+    const formData = new FormData();
+    formData.append("id", id);
+    formData.append("title", editedTitle);
+    formData.append("content", editedContent);
+    if (imageFile) {
+      formData.append("postImage", imageFile); // Use "postImage" as the field name
+    }
+
     const token = localStorage.getItem("token");
-    // console.log("Token", token);
     const headers = {
       Authorization: `Bearer ${token}`,
     };
-    console.log("Get token", headers);
+
+    axios
+      .put(`https://blog-6hj4.onrender.com/api/post/update/${id}`, formData, {
+        headers: {
+          ...headers,
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("Data updated successfully");
+          setEditing(false);
+        } else {
+          alert("Failed to update data");
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating data:", error);
+        alert("Failed to update data");
+      });
+  }
+
+  function deleteRecord(e) {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
 
     const Data = {
       id: id,
     };
+
     axios
       .delete(`https://blog-6hj4.onrender.com/api/post/delete/${id}`, {
         headers: headers,
@@ -22,7 +81,6 @@ const Dashboardcard = ({ id, postImage, title, content, subheader }) => {
       .then((response) => {
         if (response.status === 200) {
           alert("Data deleted successfully");
-          // Optionally, you can trigger a re-render or update your UI here.
         } else {
           alert("Failed to delete data");
         }
@@ -36,13 +94,52 @@ const Dashboardcard = ({ id, postImage, title, content, subheader }) => {
   return (
     <div>
       <div className="card-img-holder">
-        <img src={postImage} alt="Blog image" />
+        {isEditing ? (
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="edit-input"
+          />
+        ) : (
+          <img src={editedImage} alt="Blog image" />
+        )}
       </div>
-      <h3 className="blog-title">{title}</h3>
+      <h3 className="blog-title">
+        {isEditing ? (
+          <input
+            type="text"
+            value={editedTitle}
+            onChange={(e) => setEditedTitle(e.target.value)}
+            className="edit-input"
+          />
+        ) : (
+          editedTitle
+        )}
+      </h3>
       <span className="blog-time">{subheader}</span>
-      <p className="description">{content}</p>
+
+      {isEditing ? (
+        <div className="edit-form">
+          <textarea
+            value={editedContent}
+            onChange={(e) => setEditedContent(e.target.value)}
+            className="edit-textarea"
+          />
+          <button className="btn" onClick={handleSaveClick}>
+            Save
+          </button>
+        </div>
+      ) : (
+        <p className="description">{content}</p>
+      )}
+
       <div className="options">
-        <li className="btn">Edit</li>
+        {!isEditing && (
+          <li className="btn" onClick={handleEditClick}>
+            Edit
+          </li>
+        )}
         <li className="btn" onClick={deleteRecord}>
           Delete
         </li>

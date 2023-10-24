@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Adminx from "./Admin";
 import axios from "axios";
 
@@ -22,10 +23,21 @@ export default function Login() {
         email: email,
         password: password,
       })
-      .then((result) => {
+      .then((response) => {
+        // const { role } = response.data?.users;
+        // console.log("role", response.data?.users.role);
+
+        // if (role === "admin") {
+        //   alert("Admin logged in");
+        //   navigate("/Admin");
+        // } else {
+        //   alert("User Logged in");
+        //   navigate("/");
+        // }
+
         alert("success logged in");
-        localStorage.setItem("token", result.data.token);
-        navigate("/Admin"); // Use navigate to redirect after successful login
+        localStorage.setItem("token", response.data.token);
+        navigate("/admin"); // Use navigate to redirect after successful login
       })
       .catch((error) => {
         alert("incorrect password");
@@ -39,12 +51,7 @@ export default function Login() {
         <h2>Sign In</h2>
         <form action="#">
           <div className="form-control">
-            <input
-              type="email"
-              value={email}
-              onChange={handleEmail}
-              required
-            ></input>
+            <input type="email" value={email} onChange={handleEmail}></input>
             <label>Email or phone number</label>
           </div>
           <div className="form-control">
@@ -52,7 +59,6 @@ export default function Login() {
               type="password"
               value={password}
               onChange={handlePassword}
-              required
             ></input>
             <label>Password</label>
           </div>
@@ -63,14 +69,11 @@ export default function Login() {
           <div className="form-help"></div>
         </form>
         <p>
+          New to NewsBird?
           <Link to="/Signup">
-            New to NewsBird? <span className="reg">Register here</span>
+            <br></br>
+            <span className="reg">Register here</span>
           </Link>
-          {/* <Link to="/Admin">
-            <i>
-              <p>Admin</p>
-            </i>
-          </Link> */}
         </p>
       </div>
     </div>

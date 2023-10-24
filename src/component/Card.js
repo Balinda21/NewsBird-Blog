@@ -13,7 +13,7 @@ export const Card = ({ postImage, title, content, subheader }) => {
       <p className="description">{content}</p>
       <div className="options">
         <button className="btn">
-          Full article <Link to="/singleblog"></Link>{" "}
+          <Link to="/singleblog">Full article</Link>
         </button>
       </div>
     </div>
