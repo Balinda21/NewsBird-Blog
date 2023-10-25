@@ -56,6 +56,7 @@ const Dashboardcard = ({ id, postImage, title, content, subheader }) => {
       .then((response) => {
         if (response.status === 200) {
           alert("Data updated successfully");
+          window.location.reload();
           setEditing(false);
         } else {
           alert("Failed to update data");
@@ -87,13 +88,16 @@ const Dashboardcard = ({ id, postImage, title, content, subheader }) => {
       .then((response) => {
         if (response.status === 200) {
           alert("Data deleted successfully");
+          window.location.reload();
         } else {
           alert("Failed to delete data");
+          window.location.reload();
         }
       })
       .catch((error) => {
         console.error("Error deleting data:", error);
         alert("Failed to delete data");
+        window.location.reload();
       });
   }
 
