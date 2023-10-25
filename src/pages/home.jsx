@@ -28,6 +28,7 @@ export const Home = () => {
           posts.map((post, index) => (
             <Card
               key={index}
+              id={post._id}
               title={post.title}
               postImage={post.postImage}
               subheader={post.subheader}

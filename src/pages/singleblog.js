@@ -1,22 +1,31 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
+
 import { Link } from "react-router-dom";
 import pic1 from "../asset/blog1.jpg";
+import { useParams } from "react-router-dom";
 
 function Single() {
+  const { _id } = useParams();
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const getAll = async () => {
+      const response = await fetch(
+        `https://blog-6hj4.onrender.com/api/post/selectById/${_id}`
+      );
+      const res = await response.json();
+      setPosts(res.data);
+    };
+    getAll();
+  }, [_id]);
+
   return (
     <div class="container_re">
       <div class="post">
-        <img src={pic1} alt="Post Image" class="post-image"></img>
-        <h2>War victims</h2>
-        <p>
-          Gaza City – Fatima el-Alayan sits in her wheelchair, surrounded by her
-          family and hundreds of other people in Shifa Hospital. The 80-year-old
-          grandmother’s deeply lined face is resigned. Displacement is not a new
-          experience for her but, she says, this time feels somehow worse than
-          the Nakba she lived through in 1948. “We don’t have any food,” Fatima
-          said. “This is far harder than what I remember from 1948. The Israelis
-          keep killing children.”
-        </p>
+        <img src={posts.postImage} alt="Post Image" class="post-image"></img>
+        <h2>{posts.title}</h2>
+
+        <p>{posts.content}</p>
       </div>
 
       <div class="comments">

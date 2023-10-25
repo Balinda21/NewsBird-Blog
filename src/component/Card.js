@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 // import Single from "../pages/singleblog";
 
-export const Card = ({ postImage, title, content, subheader }) => {
+export const Card = ({ id, postImage, title, content, subheader }) => {
   return (
     <div className="card">
       <div class="card-img-holder">
@@ -13,7 +13,7 @@ export const Card = ({ postImage, title, content, subheader }) => {
       <p className="description">{content}</p>
       <div className="options">
         <button className="btn">
-          <Link to="/singleblog">Full article</Link>
+          <Link to={`/singleblog/${id}`}>Full article</Link>
         </button>
       </div>
     </div>

@@ -21,7 +21,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="signup" element={<Register />} />
-        <Route path="singleblog" element={<Single />} />
+        <Route path="/singleblog/:_id" element={<Single />} />
         <Route path="AdminDashboard" element={<Admin />} />
         <Route path="/Admin" element={<Adminx />} />
       </Routes>

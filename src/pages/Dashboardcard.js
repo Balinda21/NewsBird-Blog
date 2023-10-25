@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+function notification() {
+  const notify = () => toast("Wow so easy!");
+}
 
 const Dashboardcard = ({ id, postImage, title, content, subheader }) => {
   const [isEditing, setEditing] = useState(false);
