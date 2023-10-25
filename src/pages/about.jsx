@@ -1,20 +1,14 @@
 import React from "react";
-// import Navbar from '../component/navbar'
 import Button from "../component/button";
 import Single from "./singleblog";
 import { BsFilePdfFill } from "react-icons/bs";
-// import footer from '../component/footer'
-// import Footer from '../component/footer'
 
 const About = () => {
   return (
     <div>
-      {/* <Navbar/>
-    <Footer/> */}
       <section class="about-us">
         <div class="about">
-          {/* <img className='pic' src="https://plus.unsplash.com/premium_photo-1670328876789-2b3e51a3fd61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHdhbGwlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60'" alt="hero image" /> */}
-          <div class="text">
+          <div className="text">
             <h2>About Us</h2>
             <p>
               Step into a realm where words breathe life, unveiling captivating
@@ -31,7 +25,7 @@ const About = () => {
               waiting to be told. Embrace the power of words with us,
               celebrating the beauty of the human spirit together.
             </p>
-            <div class="data">
+            <div className="data">
               <a href="#" className="hire">
                 Download{" "}
                 <i>

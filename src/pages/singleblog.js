@@ -1,43 +1,94 @@
-import { React, useState, useEffect } from "react";
-
-import { Link } from "react-router-dom";
-import pic1 from "../asset/blog1.jpg";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function Single() {
   const { _id } = useParams();
-  const [posts, setPosts] = useState([]);
+  const [post, setPost] = useState({});
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getAll = async () => {
-      const response = await fetch(
-        `https://blog-6hj4.onrender.com/api/post/selectById/${_id}`
-      );
-      const res = await response.json();
-      setPosts(res.data);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `https://blog-6hj4.onrender.com/api/post/selectById/${_id}`
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          setPost(data.data);
+          setComments(data.data.comments || []);
+        } else {
+          setError("Failed to fetch post data");
+        }
+      } catch (error) {
+        setError("Error fetching post data: " + error.message);
+      }
     };
-    getAll();
+
+    fetchData();
   }, [_id]);
+  console.log(_id);
+  const token = localStorage.getItem("token");
+  console.log(token);
+
+  const handleCommentChange = (e) => {
+    setNewComment(e.target.value);
+  };
+
+  const handleCommentSubmit = async () => {
+    if (newComment.trim() !== "") {
+      try {
+        const response = await fetch(
+          `https://blog-6hj4.onrender.com/api/post/comment/${_id}`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ content: newComment }),
+          }
+        );
+
+        if (response.ok) {
+          const updatedComments = await response.json();
+          setComments(updatedComments);
+          setNewComment("");
+          setError(null);
+          alert("success");
+        } else {
+          setError("Failed to add comment to the database");
+        }
+      } catch (error) {
+        setError("Error adding comment: " + error.message);
+      }
+    }
+  };
 
   return (
-    <div class="container_re">
-      <div class="post">
-        <img src={posts.postImage} alt="Post Image" class="post-image"></img>
-        <h2>{posts.title}</h2>
-
-        <p>{posts.content}</p>
+    <div className="container_re">
+      <div className="post">
+        <img src={post.postImage} alt="Post Image" className="post-image" />
+        <h2>{post.title}</h2>
+        <p>{post.content}</p>
       </div>
 
-      <div class="comments">
+      <div className="comments">
         <h3>Comments</h3>
-        <div id="comment-list"></div>
+
         <input
           type="text"
-          id="comment-input"
+          value={newComment}
+          onChange={handleCommentChange}
           placeholder="Add your comment..."
-          class="comment-input"
-        ></input>
-        <button class="comment-button">Comment</button>
+          className="comment-input"
+        />
+        <button onClick={handleCommentSubmit} className="comment-button">
+          Comment
+        </button>
+        {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
     </div>
   );

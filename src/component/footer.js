@@ -85,13 +85,13 @@ function Footer() {
             </button>
           </form>
           <div className="icons">
-            <i class="">
+            <i className="">
               <BsFacebook />
             </i>
-            <i class="">
+            <i className="">
               <BsTwitter />
             </i>
-            <i class="">
+            <i className="">
               <BsWhatsapp />
             </i>
             {/* <i class="">

@@ -3,42 +3,42 @@ import React from "react";
 const Contact = () => {
   return (
     <div>
-      <div class="container">
+      <div className="container">
         <form action="" method="POST">
-          <div class="form-row">
-            <div class="input-data">
+          <div className="form-row">
+            <div className="input-data">
               <input type="text" required></input>
-              <div class="underline"></div>
+              <div className="underline"></div>
               <label for="">First Name</label>
             </div>
-            <div class="input-data">
+            <div className="input-data">
               <input type="text" required></input>
-              <div class="underline"></div>
+              <div className="underline"></div>
               <label for="">Last Name</label>
             </div>
           </div>
-          <div class="form-row">
-            <div class="input-data">
+          <div className="form-row">
+            <div className="input-data">
               <input type="text" required></input>
-              <div class="underline"></div>
+              <div className="underline"></div>
               <label for="">Email Address</label>
             </div>
-            <div class="input-data">
+            <div className="input-data">
               <input type="text" required></input>
-              <div class="underline"></div>
+              <div className="underline"></div>
               <label for="">News Category</label>
             </div>
           </div>
-          <div class="form-row">
-            <div class="input-data textarea">
+          <div className="form-row">
+            <div className="input-data textarea">
               <textarea rows="8" cols="80" required></textarea>
               <br />
-              <div class="underline"></div>
+              <div className="underline"></div>
               <label for="">Write your message</label>
               <br />
-              <div class="form-row submit-btn">
-                <div class="input-data">
-                  <div class="inner"></div>
+              <div className="form-row submit-btn">
+                <div className="input-data">
+                  <div className="inner"></div>
                   <input type="submit" value="submit"></input>
                 </div>
               </div>
