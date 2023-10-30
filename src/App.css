@@ -126,15 +126,78 @@ nav .desktop-menu {
 
 /*admin cards*/
 .statistics {
-  position: relative;
-  margin-top: 2rem;
-  left: 2rem;
-  width: 96%;
-  height: 20vh;
-  background-color: skyblue;
+  margin-top: 20px;
   display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
 }
+
+.posts_nbr,
+.users_nbr {
+  width: 150px;
+  height: 100px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.posts_nbr::before,
+.users_nbr::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.3));
+  transition: left 0.3s ease-in-out;
+}
+
+.posts_nbr:hover::before,
+.users_nbr:hover::before {
+  left: 0;
+}
+.posts-nbr,
+.users-nbr {
+  font-size: 1.5rem;
+  color: #333;
+}
+
 /************edit form/*********/
+
+.edit-input {
+  width: 14rem;
+  height: 2rem;
+}
+
+.btn_save {
+  position: absolute;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  font-weight: 400;
+  background: skyblue;
+  cursor: pointer;
+  border: none;
+  margin-left: 7rem;
+  margin-top: -1px;
+}
+
+.edit-textarea {
+  width: 50%;
+  height: 50px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 14px;
+  margin-left: 20px;
+}
 
 /****users****/
 
@@ -618,6 +681,78 @@ form .form-help :where(label, a) {
 }
 
 /*/////////////////////////COMMENT////////////////////////*/
+/* styles.css */
+
+.comment-form {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.comment-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #91c5da;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.comment-button:hover {
+  background-color: #0099cc;
+}
+
+.comments {
+  margin-top: 20px;
+}
+
+.comments h3 {
+  font-size: 1.5rem;
+  color: skyblue;
+  margin-bottom: 10px;
+}
+
+.comment-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.author-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-content p {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+}
+
+.comment-author {
+  color: skyblue;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.comment-list {
+  display: flex;
+}
+.eye {
+  width: 10rem;
+}
+
+.author_picture {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+}
 
 .container_re {
   max-width: 760px;
@@ -659,8 +794,9 @@ form .form-help :where(label, a) {
 
 .comment-button {
   width: 90px;
+  margin-top: -10px;
   padding: 10px;
-  background-color: rgb(0, 98, 255);
+  background-color: #0099cc;
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -704,13 +840,11 @@ label {
 
 input[type="file"],
 .area {
-  width: 100%;
+  width: 80%;
   color: black;
-  padding: 10px;
   margin-bottom: 20px;
   font-size: 16px;
   border: 1px solid #bdc3c7;
-  border-radius: 5px;
 }
 
 .publish {
@@ -752,7 +886,7 @@ input[type="file"],
 .footer .footer-row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-tween;
   gap: 3.5rem;
   padding: 60px;
 }
@@ -960,6 +1094,10 @@ input[type="file"],
 
 @media (max-width: 576px) {
   .statistics {
-    width: 90%;
+    width: 100%;
+  }
+
+  .posts-nbr {
+    display: flex;
   }
 }

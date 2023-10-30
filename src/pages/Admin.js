@@ -1,79 +1,11 @@
-// import React, { useEffect, useState } from "react";
-// import { Link, useNavigate } from "react-router-dom";
-// import { LuLoader } from "react-icons/lu";
-// import { FiUsers } from "react-icons/fi";
-// import { PiUsersThreeFill } from "react-icons/pi";
-// import Dashboardcard from "./Dashboardcard";
-// import { AiOutlinePlus } from "react-icons/ai";
-
-// function Adminx() {
-//   const navigate = useNavigate();
-//   useEffect(() => {
-//     if (!localStorage.getItem("token")) {
-//       navigate("/login");
-//     }
-//   }, []);
-
-//   const [posts, setPosts] = useState([]);
-//   useEffect(() => {
-//     const getAll = async () => {
-//       const response = await fetch(
-//         "https://blog-6hj4.onrender.com/api/post/select"
-//       );
-//       const res = await response.json();
-//       setPosts(res.data);
-//     };
-//     getAll();
-//   }, []);
-
-//   console.log("THIS MY POSTS", posts);
-
-//   return (
-//     <div>
-//       <div className="page_admin">
-//         <button className="Addblog">
-//           <Link to="/AdminDashboard">
-//             <i>
-//               <p>
-//                 Add Blog
-//                 <i class="">
-//                   <AiOutlinePlus />
-//                 </i>
-//               </p>
-//             </i>
-//           </Link>
-//         </button>
-//       </div>
-
-//       <section className="grid_container">
-//         {posts.length > 0 ? (
-//           posts.map((post, index) => (
-//             <Dashboardcard
-//               id={post._id}
-//               key={index}
-//               title={post.title}
-//               postImage={post.postImage}
-//               subheader={post.subheader}
-//               content={post.content}
-//             />
-//           ))
-//         ) : (
-//           <p>
-//             <LuLoader />
-//           </p>
-//         )}
-//       </section>
-//     </div>
-//   );
-// }
-
-// export default Adminx;
-
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LuLoader } from "react-icons/lu";
 import Dashboardcard from "./Dashboardcard";
 import { AiOutlinePlus } from "react-icons/ai";
+import { BsFillPostcardFill } from "react-icons/bs";
+import { FaUsers } from "react-icons/fa";
+import { BiLogOut } from "react-icons/bi";
 
 function Adminx() {
   const navigate = useNavigate();
@@ -114,7 +46,7 @@ function Adminx() {
           <Link to="/AdminDashboard">
             <i>
               <p>
-                Add Blog
+                Add Blogs
                 <i className="">
                   <AiOutlinePlus />
                 </i>
@@ -123,16 +55,28 @@ function Adminx() {
           </Link>
         </button>
       </div>
+      <div className="statistics">
+        <div className="posts_nbr">
+          <p className="post_icon">
+            <i className="icon_post">
+              <h3>Posts</h3>
+              {/* <BsFillPostcardFill />{" "} */}
+            </i>
+
+            {posts.length}
+          </p>
+        </div>
+        <div className="users_nbr">
+          <h2>
+            <FaUsers /> {usersCount}
+          </h2>
+        </div>
+        <div className="users_nbr">
+          <h2>Visualize</h2>
+        </div>
+      </div>
 
       <section className="grid_container">
-        <div className="count-info">
-          <div className="count-item">
-            <h2>Number of Posts: {posts.length}</h2>
-          </div>
-          <div className="count-item">
-            <h2>Number of Users: {usersCount}</h2>
-          </div>
-        </div>
         {posts.length > 0 ? (
           posts.map((post, index) => (
             <Dashboardcard

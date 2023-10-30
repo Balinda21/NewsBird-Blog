@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { AiFillEye } from "react-icons/ai";
 
 function Single() {
   const { _id } = useParams();
@@ -78,6 +79,11 @@ function Single() {
         <img src={post.postImage} alt="Post Image" className="post-image" />
         <h2>{post.title}</h2>
         <p>{post.content}</p>
+        <br></br>
+        <p>
+          <AiFillEye /> {post.views}
+        </p>{" "}
+        {/* Display the number of views here */}
       </div>
 
       <div className="comment-form">
@@ -95,6 +101,36 @@ function Single() {
 
       <div className="comments">
         <h3>Comments</h3>
+
+        <ul id="comment-list">
+          {comments.map((comment, index) => (
+            <li key={index} className="comment-item">
+              <img
+                className="author-picture"
+                src={comment.author.profile}
+                alt="Author"
+              />
+
+              <div className="comment-content">
+                <p className="comment-author">{comment.author.first}</p>
+
+                <p>{comment.content}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        {error && <p className="error-message">{error}</p>}
+      </div>
+    </div>
+  );
+}
+
+export default Single;
+
+{
+  /* <div className="comments">
+        <h3>Comments</h3>
         <ul id="comment-list">
           {comments.map((comment, index) => (
             <li key={index}>
@@ -110,4 +146,5 @@ function Single() {
   );
 }
 
-export default Single;
+export default Single; */
+}
