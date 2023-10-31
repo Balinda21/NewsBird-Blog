@@ -127,24 +127,3 @@ function Single() {
 }
 
 export default Single;
-
-{
-  /* <div className="comments">
-        <h3>Comments</h3>
-        <ul id="comment-list">
-          {comments.map((comment, index) => (
-            <li key={index}>
-              <p>{comment.author.first}</p>,{comment.content}, ,{" "}
-              <img className="author_picture" src={comment.author.profile} />
-            </li>
-          ))}
-        </ul>
-
-        {error && <p className="error-message">{error}</p>}
-      </div>
-    </div>
-  );
-}
-
-export default Single; */
-}

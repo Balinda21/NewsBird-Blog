@@ -24,20 +24,20 @@ export default function Login() {
         password: password,
       })
       .then((response) => {
-        // const { role } = response.data?.users;
-        // console.log("role", response.data?.users.role);
+        const { role } = response.data?.users;
+        console.log("role", response.data?.users.role);
 
-        // if (role === "admin") {
-        //   alert("Admin logged in");
-        //   navigate("/Admin");
-        // } else {
-        //   alert("User Logged in");
-        //   navigate("/");
-        // }
+        if (role === "admin") {
+          alert("Admin logged in");
+          navigate("/Admin");
+        } else {
+          alert("User Logged in");
+          navigate("/");
+        }
 
-        alert("success logged in");
-        localStorage.setItem("token", response.data.token);
-        navigate("/admin"); // Use navigate to redirect after successful login
+        // alert("success logged in");
+        // localStorage.setItem("token", response.data.token);
+        // navigate("/admin"); // Use navigate to redirect after successful login
       })
       .catch((error) => {
         alert("incorrect password");

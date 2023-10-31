@@ -6,6 +6,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { BsFillPostcardFill } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
+import Graph from "../pages/charts";
 
 function Adminx() {
   const navigate = useNavigate();
@@ -72,8 +73,11 @@ function Adminx() {
           </h2>
         </div>
         <div className="users_nbr">
-          <h2>Visualize</h2>
+          <Link to="/charts">Graph</Link>
         </div>
+        <button>
+          <Link to="/charts">Graph</Link>
+        </button>
       </div>
 
       <section className="grid_container">

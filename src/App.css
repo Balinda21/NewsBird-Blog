@@ -970,6 +970,21 @@ input[type="file"],
   color: #afb6c7;
 }
 
+/****************************************************************/
+.line-chart {
+  display: flex;
+  justify-content: center;
+  margin-top: 15%;
+  position: inherit;
+}
+.statistics_1 {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 1rem;
+  margin-top: 10rem;
+}
+
 /*contact us*/
 @media screen and (max-width: 768px) {
   .form-row {

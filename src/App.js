@@ -10,6 +10,7 @@ import Login from "./pages/login";
 import Register from "./pages/signup";
 import Admin from "./pages/AdminDashboard";
 import Adminx from "./pages/Admin";
+import Graph from "./pages/charts";
 
 function App() {
   return (
@@ -24,8 +25,9 @@ function App() {
         <Route path="/singleblog/:_id" element={<Single />} />
         <Route path="AdminDashboard" element={<Admin />} />
         <Route path="/Admin" element={<Adminx />} />
+        <Route path="/charts" element={<Graph />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 }
